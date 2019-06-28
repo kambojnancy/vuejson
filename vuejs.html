@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+   <style>
+    li {
+      list-style: none;
+    }
+    .completed {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="todo in todos">
+        <input type="checkbox" :checked="todo.completed" @click="todo.completed = !todo.completed"> 
+        <span :class="todo.completed ? 'completed' : ''">{{ todo.task }}</span>
+      </li>
+    </ul>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        todos: [
+          {task: 'Goto Store', completed: false },
+          {task: 'Buy Cookies', completed: false },
+          {task: 'Cook Dinner', completed: false },
+          {task: 'Read a book', completed: false }
+        ]
+      },
+    })
+  </script> 
+</body>
+</html>

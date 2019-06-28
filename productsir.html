@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products</title>
+  <style>
+    li {
+      list-style: none;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+</head>
+<body>
+
+  <div id="app">
+      <ul>
+        <li v-for="(product, index) in products">
+          <input type="checkbox" @click="updateTotal(index)">
+          <span>{{ product.title }} - {{ product.price }}</span>
+        </li>
+      </ul>
+
+      <div id="products">
+        Total : <span>{{ total }}</span>
+      </div>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        total: 0,
+        products: [
+            {title: 'Polo T Shirt', price : 10, in_cart: false},
+            {title: 'Levis Jeans', price : 15, in_cart: false},
+            {title: 'Denim Jeans', price : 30, in_cart: false},
+        ]
+      },
+      methods: {
+        updateTotal(index) {
+          var totalSum = 0;
+          this.products[index].in_cart = !this.products[index].in_cart;
+          this.products.forEach(function(product){            
+            if(product.in_cart == true) {   
+              totalSum = totalSum + product.price;              
+            }
+          });
+          this.total = totalSum;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

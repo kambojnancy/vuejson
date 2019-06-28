@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+</head>
+<body>
+  <div id='my'>
+  <input type="checkbox"  value="10" v-model="checkedPrice">
+  <label for="jack"><strong>Jeans: Price ----------- 10 USD</strong></label></br>
+  <input type="checkbox"  value="20" v-model="checkedPrice">
+  <label for="john"><strong>Pent: Price ------------20 USD</strong></label></br>
+  <input type="checkbox"  value="30" v-model="checkedPrice">
+  <label for="mike"><strong>shirt: Price ------------40 USD</strong></label></br>
+  <br>
+  <span></span>
+  <br>
+  <span> <strong style="color:red;">Total Price: {{ sum }} USD</strong></span>
+</div>
+  <script>
+    new Vue({
+  el: '#my',
+  data: {
+    checkedPrice: []
+  },
+  computed: {
+    sum() {
+      return this.checkedPrice.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+      }, 0);
+    }
+  }
+})
+  </script> 
+</body>
+</html>

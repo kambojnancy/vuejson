@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+   <style>
+    li {
+      list-style: none;
+    }
+    .completed {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <form action="">
+      <input type="text" placeholder="email" v-model="email">
+      <input type="password" placeholder="password" v-model="password">
+      <button @click.prevent="login" type="submit">Login</button>
+    </form>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        email : '',
+        password : '',
+      },
+
+      methods: {
+        login() {
+          axios.post('http://localhost/vuejson/request.php', {
+            email: this.email,
+            password: this.password,
+          }).then(function(response){
+            console.log(response, 'success');
+          }).catch(function(err){
+            console.log(err, 'something went wrong');
+          });
+        }
+      }
+    })
+  </script> 
+</body>
+</html>
